@@ -1,0 +1,88 @@
+//S.Reese
+/**
+Assignment 2
+
+Due: September 29th, 2017
+
+Total: 15 Points
+
+ 
+
+Ellison Private Elementary School has three classrooms in each of nine grades, kindergarten (grade 0) through grade 8,
+and allows parents to pay tuition over the nine-month school year.  Design the application that outputs nine tuition
+payment coupons for each of the 27 classrooms.  Each coupon should contain the grade number (0 through 8), the
+classroom number (1 through 3), the month (1 through 9), and the amount of tuition due.  Tuition for kindergarten
+is $80 per month.  Tuition for the other grades is $60 per month times the grade level.
+
+Please construct the program using flowgorithm
+**/
+START
+	DECLARATIONS
+	num gradeNum
+	num classRoomNum
+	num month
+	num tuition
+	num due
+	num paid
+	num invalid = 0
+	OUTPUT "Welcome to the tuition payment application."
+	/* User data input */
+	WHILE invalid <> 1
+	OUTPUT "Enter the student's Grade Number [0-8] 0 for Kindergarten:       "
+	INPUT gradeNum
+	OUTPUT "Enter the student's classroom number:       "
+	INPUT classRoomNum
+	OUTPUT "Enter the month of tuition:        "
+	INPUT month
+	OUTPUT "Enter the amount of tuition you will be paying: $     "
+	INPUT paid
+	RETURN
+	/*Check/Validate user input */
+	IF gradeNum < 0 AND gradeNum > 8 THEN invalid == 1
+		OUTPUT "You entered an invalid grade number, please reenter the grade number."
+	ELSE 
+		IF gradeNum >= 0 AND gradeNum <= 8 THEN invalid == 0
+		ENDIF
+	ENDIF
+	IF classRoomNum < 1 AND classRoomNum > 3 THEN invalid == 1
+		OUTPUT "You entered an invalid classroom number, please reenter the classroom number."
+	ELSE
+		IF classRoomNum >= 1 AND classRoomNum <= 3 THEN invalid == 0
+		ENDIF
+	ENDIF
+	IF month < 1 AND month > 9 THEN invalid == 0
+		OUTPUT "You have entered an invalid month, please reenter the month."
+	ELSE 
+		IF month >= 1 AND month <= 9 THEN invalid == 
+		ENDIF
+	ENDIF
+	RETURN
+	
+	/*Calculate Tuition*/
+	IF grade == 0 THEN tuition == 80 * 9
+	ELSE
+		IF grade >= 1 AND grade <= 8 THEN tuition == (60*grade) *9
+		ENDIF
+	ENDIF
+	RETURN
+	
+	/*Tuition Payment*/
+	IF paid > tuition THEN 
+		OUTPUT "You paid an invalid amount, please enter an explanation."
+	ELSE
+		IF paid == tuition THEN due = 0
+			OUTPUT "Amount of tuition due has been paid in full."
+		ELSE
+			IF paid < tuition THEN due = tuition -paid
+			ENDIF
+		ENDIF
+	ENDIF
+	RETURN
+	
+	OUTPUT "Student's Grade:    ", gradeNum  
+	OUTPUT "Student's classroom number:      ", classRoomNum
+	OUTPUT "Month of Tuition:      ", month
+	OUTPUT "Total tuition fee for 9 months is: $       ", tuition
+	OUTPUT "Tuition amount due to be paid is: $      ", due
+	RETURN
+	

@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.6">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="reesah"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2017-09-29 12:53:30 PM"/>
+        <attribute name="created" value="cmVlc2FoOyBDTkQ1MjAyNzg3OyAyMDE3LTA5LTI3OyAwODowMzowNyBBTTsgMjU4Mw=="/>
+        <attribute name="edited" value="cmVlc2FoOyBDTkQ1MjAyNzg3OyAyMDE3LTA5LTI5OyAxMjo1MzozMCBQTTsgMjU5Ng=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="gradeNum" type="Integer" array="False" size=""/>
+            <declare name="classRoomNum" type="Integer" array="False" size=""/>
+            <declare name="month" type="Integer" array="False" size=""/>
+            <declare name="tuition" type="Integer" array="False" size=""/>
+            <declare name="due" type="Integer" array="False" size=""/>
+            <declare name="paid" type="Integer" array="False" size=""/>
+            <declare name="invalid" type="Integer" array="False" size=""/>
+            <assign variable="invalid" expression="0"/>
+            <output expression="&quot;Welcome to the tuition payment application.&quot;"/>
+            <comment text="&quot;User data input below.&quot;"/>
+            <output expression="&quot;Enter the student's Grade Number [0-8] 0 for Kindergarten:       &quot;"/>
+            <input variable="gradeNum"/>
+            <output expression="&quot;Enter the student's classroom number:       &quot;"/>
+            <input variable="classRoomNum"/>
+            <output expression="&quot;Enter the month of tuition:        &quot;"/>
+            <input variable="month"/>
+            <output expression="&quot;Enter the amount of tuition you will be paying: $     &quot;"/>
+            <input variable="paid"/>
+            <if expression="invalid != 1">
+                <then>
+                    <comment text="User grade number input entered, then checked below."/>
+                    <if expression="gradeNum &lt; 0 &amp;&amp; gradeNum &gt; 8">
+                        <then>
+                            <if expression="gradeNum &gt;= 0 &amp; gradeNum &lt;= 8">
+                                <then>
+                                    <assign variable="invalid" expression="0"/>
+                                </then>
+                                <else>
+                                    <if expression="classRoomNum &lt; 1 &amp; classRoomNum &gt; 3">
+                                        <then>
+                                            <assign variable="invalid" expression="1"/>
+                                            <output expression="&quot;You entered an invalid classroom number, please reenter the classroom number.&quot;"/>
+                                        </then>
+                                        <else>
+                                            <if expression="classRoomNum &gt;= 1 &amp; classRoomNum &lt;= 3">
+                                                <then>
+                                                    <assign variable="invalid" expression="0"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="month &lt; 1 &amp; month &gt; 9">
+                                                        <then>
+                                                            <assign variable="invalid" expression="0"/>
+                                                            <output expression="&quot;You have entered an invalid month, please reenter the month.&quot;"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="month &gt;= 1 &amp; month &lt;= 9">
+                                                                <then>
+                                                                    <assign variable="invalid" expression="0"/>
+                                                                </then>
+                                                                <else>
+                                                                    <comment text="RETURN"/>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <assign variable="invalid" expression="1"/>
+                            <output expression="&quot;You entered an invalid grade number, please reenter the grade number.&quot;"/>
+                        </else>
+                    </if>
+                    <comment text="Calculate tuition"/>
+                    <if expression="gradeNum == 0">
+                        <then>
+                            <assign variable="tuition" expression="80*9"/>
+                        </then>
+                        <else>
+                            <if expression="gradeNum &gt;= 1 &amp;&amp; gradeNum &lt;= 8">
+                                <then>
+                                    <assign variable="tuition" expression="(60 * gradeNum)*9"/>
+                                </then>
+                                <else/>
+                            </if>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;Student's Grade:    &quot; &amp;&amp; gradeNum"/>
+                    <output expression="&quot;Student's classroom number:      &quot; &amp;&amp; classRoomNum"/>
+                    <output expression="&quot;Month of Tuition:      &quot; &amp;&amp; tuition"/>
+                    <output expression="&quot;Tuition amount due to be paid: $      &quot;  &amp;&amp; due"/>
+                </else>
+            </if>
+            <comment text="Tuition payment below."/>
+            <if expression="paid &gt; tuition">
+                <then>
+                    <output expression="&quot;You paid an invalid amount, please enter an explanation.&quot;"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="paid == tuition">
+                <then>
+                    <assign variable="due" expression="0"/>
+                    <output expression="&quot;Tuition amount due, has already been paid.&quot;"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="paid &lt; tuition">
+                <then>
+                    <assign variable="due" expression="tuition - paid"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
